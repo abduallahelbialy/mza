@@ -164,7 +164,7 @@ defineProps({
     display: none;
 }
 .bas li a {
-    color: #fc40b9 !important;
+    color: #ec1fa4 !important;
     font-size: 20px;
     font-weight: bold;
 }
