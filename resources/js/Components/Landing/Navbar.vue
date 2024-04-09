@@ -44,7 +44,7 @@ defineProps({
             <sapn class="text-red-600 font-semibold">انتظرونا قريبا</sapn>
         </p>
     </div>
-    <div class="container mx-auto p-4">
+    <div class="container mx-auto p-2">
 
     <nav class="bg-white p-2">
         <div class="flex justify-between items-center">
