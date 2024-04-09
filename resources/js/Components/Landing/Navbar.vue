@@ -44,6 +44,8 @@ defineProps({
             <sapn class="text-red-600 font-semibold">انتظرونا قريبا</sapn>
         </p>
     </div>
+    <div class="container mx-auto p-4">
+
     <nav class="bg-white p-2">
         <div class="flex justify-between items-center">
             <!-- Cart & Login Button -->
@@ -149,6 +151,7 @@ defineProps({
             </div>
         </div>
     </nav>
+    </div>
 </template>
 <style scoped>
 .pupl {
@@ -190,7 +193,7 @@ defineProps({
         line-height: 44px;
     }
     .bas li a {
-        color: #fc40b9 !important;
+        color: #ec1fa4 !important;
     }
     .bas li  i{
         display: none;
@@ -207,6 +210,7 @@ defineProps({
     top: -42px
     }
 }
+
 /* @media (min-width: 1024px) {
     .jjj {
         margin-bottom: -102px;
