@@ -59,5 +59,8 @@ Route::group([
 Route::get('/slider', function () {
     return Inertia::render('Web/SwiperSlideTest');
      })->name('SwiperSlideTest.slider');
+Route::get('/According', function () {
+    return Inertia::render('Web/According');
+     })->name('According');
 
 require __DIR__ . '/auth.php';

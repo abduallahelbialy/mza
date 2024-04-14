@@ -1,5 +1,7 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
+import InputError from "@/Components/InputError.vue";
+import InputLabel from "@/Components/InputLabel.vue";
 import Logo from "@/Components/Logo.vue";
 import Cart from "@/Components/Cart.vue";
 import { onMounted, ref } from "vue";
@@ -44,116 +46,165 @@ defineProps({
             <sapn class="text-red-600 font-semibold">انتظرونا قريبا</sapn>
         </p>
     </div>
-    <div class="container mx-auto p-2">
-
-    <nav class="bg-white p-2">
-        <div class="flex justify-between items-center">
-            <!-- Cart & Login Button -->
+    <div class="container mx-auto">
+        <nav>
+            <div class="menu-toggle" @click="toggleMenu">
+                <i class="fa-solid fa-bars"></i>
+            </div>
             <div class="flex items-center">
                 <button
-                    class="bg-pink-600 text-white px-4 py-2 rounded-lg mr-4 phon"
+                    class="bg-pink-600 text-white px-4 py-2 rounded-lg mr-4 phn "
                 >
                     تسجيل دخول
                 </button>
                 <div class="relative">
-                    <button class="text-white">
+                    <button class="text-white td">
                         <Cart class="w-20 flex cart d-inline-block" />
                     </button>
                     <!-- Cart Badge -->
                 </div>
             </div>
-            <!-- Logo -->
-            <div class="flex items-center">
-                <div class="w-24">
-                    <img
-                        src="https://mzaodin.com/website/log-removebg-preview.png"
-                        alt=""
-                    />
-                </div>
+            <div class="w-24 ss">
+                <img
+                    src="https://mzaodin.com/website/log-removebg-preview.png"
+                    alt=""
+                />
             </div>
-            <!-- Toggle Menu Button -->
-             <div class="notification relative cursor-pointer">
-                    <svg class="not-img absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24"
-                        width="24" id="Bell-Notification--Streamline-Nova">
-                        <!-- <desc>Bell Notification Streamline Icon: https://streamlinehq.com</desc> -->
-                        <path d="M20 9A8 8 0 0 0 4 9v9h16zM4 18H0m24 0h-4" fill="none" stroke="#be290b"
-                            stroke-linejoin="round" stroke-width="2"></path>
-                        <path d="M15 21a3 3 0 0 1 -6 0z" fill="#be290b" stroke-width="2"></path>
-                    </svg>
-                </div>
-            <div class="flex md:hidden">
-                <button
-                    id="toggleButton"
-                    class="text-white focus:outline-none bg-gray-600"
-                    @click="toggleMenu"
+ <button class="text-white er">
+                        <Cart class="w-20 flex cart d-inline-block" />
+                    </button>
+            <ul class="menu" :class="{ active: isMenuOpen }">
+                 <button
+                    class="bg-pink-600 text-white px-4 py-1 rounded-lg mr-4 rr "
                 >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16"
-                        />
-                    </svg>
+                    تسجيل دخول
                 </button>
-            </div>
-            <!-- Links -->
-            <div
-                :class="{
-                    hidden: !isMenuOpen,
-                    'md:flex': true,
-                    'space-x-4': true,
-                }"
-            >
-                <ul class="flex space-x-4 bas">
-                    <li class="main-text-color">
-                        <i
-                            class="fas fa-users me-2 text-sm leading-lg main-text-color opacity-75"
-                        />
+                <li class="main-text-color">
+                    <i
+                        class="fas fa-users me-2 text-sm leading-lg main-text-color opacity-75"
+                    />
 
-                        <a href="#" class="text-white">من نحن</a>
-                    </li>
-                    <li  class="main-text-color">
-                        <i
-                            class="fas fa-question-circle me-2 text-sm leading-lg main-text-color opacity-75"
-                        />
+                    <a href="#" class="text-white">من نحن</a>
+                </li>
+                <li class="main-text-color">
+                    <i
+                        class="fas fa-question-circle me-2 text-sm leading-lg main-text-color opacity-75"
+                    />
 
-                        <a href="#" class="text-white">الاسئلة الشائعة</a>
-                    </li>
-                    <li  class="main-text-color">
-                        <i
-                            class="fas fa-gavel me-2 text-sm leading-lg main-text-color opacity-75"
-                        />
+                  <Link :href="route('According')" class="text-white">الاسئلة الشائعة</Link>
+                </li>
+                                   
+                <li class="main-text-color">
+                    <i
+                        class="fas fa-gavel me-2 text-sm leading-lg main-text-color opacity-75"
+                    />
 
-                        <a href="#" class="text-white">المزادات</a>
-                    </li>
-                    <li  class="main-text-color">
-                        <i
-                            class="fas fa-home me-2 text-sm leading-lg main-text-color opacity-75"
-                        />
+                    <a href="#" class="text-white">المزادات</a>
+                </li>
+                <li class="main-text-color">
+                    <i
+                        class="fas fa-home me-2 text-sm leading-lg main-text-color opacity-75"
+                    />
 
-                        <a href="#" class="text-white">الرئيسية</a>
-                    </li>
-                    <div class="flex justify-end">
-                        <button
-                            class="bg-pink-600 text-white px-2 py-0 rounded-lg mr-4 yy"
-                        >
-                            تسجيل دخول
-                        </button>
-                    </div>
-                </ul>
-            </div>
-        </div>
-    </nav>
+                    <a href="#" class="text-white">الرئيسية</a>
+                </li>
+            </ul>
+        </nav>
     </div>
+    
 </template>
+
 <style scoped>
+.er{
+    display: none;
+}
+.rr{
+    display: none;
+}
+nav {
+    background-color: #fff;
+    color: #ec1fa4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    height: 3px;
+    width: 25px;
+    background-color: #fff;
+    margin: 4px 0;
+    transition: all 0.3s ease;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    margin: 0 10px;
+}
+
+.menu a {
+    color:#ec1fa4 ;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .er{
+        display: block;
+    }
+    .td{
+        display: none !important;
+    }
+    .ss{
+        margin: auto;
+    }
+    .rr{
+        display: block;
+    }
+    .phn{
+        display: none;
+    }
+    nav{
+        flex-direction: row-reverse;
+    }
+    .menu-toggle {
+        display: flex;
+    }
+    .menu i{
+        display: none !important;
+    }
+    .menu {
+        display: none;
+        flex-direction: column;
+        line-height: 40px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        background-color: #fff;
+        padding: 10px;
+        align-items: center;
+        flex-direction: column-reverse;
+        font-size: 20px;
+        position: absolute;
+        top: 150px;
+        left: 0;
+        width: 100%;
+    }
+    
+    .menu.active {
+        display: flex;
+    }
+}
 .pupl {
     display: none;
 }
@@ -169,7 +220,7 @@ defineProps({
     font-weight: bold;
 }
 
-@media (max-width: 477px) {
+@media (max-width: 768px) {
     .notification {
         display: block;
     }
@@ -195,7 +246,7 @@ defineProps({
     .bas li a {
         color: #ec1fa4 !important;
     }
-    .bas li  i{
+    .bas li i {
         display: none;
     }
     .pupl {
@@ -206,8 +257,8 @@ defineProps({
         border-radius: 4px;
     }
     .not-img {
-      left: 64px;
-    top: -42px
+        left: 64px;
+        top: -42px;
     }
 }
 
